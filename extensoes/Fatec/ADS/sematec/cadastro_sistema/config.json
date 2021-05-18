@@ -1,0 +1,98 @@
+{
+	"configuracoes":{
+		"precisao":80,
+		"timeout": "00:05:00",
+		"tentativas": 3,
+		"mensagens_tentativas": [
+			"Olá amigo, eu não entendi o que você quis dizer. Poderia me ajudar?",
+			"Eita, não entendi!"
+		]
+	},
+	"variaveis":{
+ 		"nome":".*", 
+		"data_nascimento": "(\\d{2}\\/\\d{2}\\/\\d{4})",
+		"idade":"([\\d]{2,})",
+		"cep":"(\\d{5}-{0,1}\\d{3})",
+		"cpf":"(\\d{3}.\\d{3}.\\d{3}-\\d{2})|(\\d{11})",
+		"materia":["/analiseDesenvolvimentoDeSistemas", "/biocombustiveis"],
+		"dados_corretos": ["/sim", "/nao"]
+	 }, 
+  "principal":[
+		"/cadastrar_sematec",
+    "quero me cadastrar no novo semestre",
+		"Cadastrar novo semestre"
+  ],
+
+	"perguntar_nome":[
+		"Qual é o seu nome? (Digite apenas o seu nome)"
+
+	],
+	"ref_obter_nome":[
+		"$nome"
+	],
+
+
+
+	"perguntar_idade":[
+		"Qual é a sua idade"
+	],
+	"ref_obter_idade":[
+		"$idade",
+		"Eu tenho $idade anos",
+		"$idade anos"
+	],
+
+
+	"perguntar_data_nascimento":[
+		"Você nasceu em qual ano? Exemplo: 03/12/1996"
+	],
+	"ref_obter_data_nascimento":[
+		"Eu nasci em $data_nascimento",
+		"$data_nascimento"
+	],
+
+
+	"perguntar_cep":[
+		"Qual o seu CEP?"
+	],
+	"ref_obter_cep":[
+		"meu cep é $cep",
+		"$cep"
+	],
+
+
+	
+	"perguntar_cpf":[
+		"Qual o seu CPF?"
+	],
+	"ref_obter_cpf":[
+		"meu cep é $cpf",
+		"$cpf"
+	],
+
+
+	"perguntar_materia":[
+		"Clique na matéria que você quer se inscrever?\n$.materia"
+	],
+	"ref_obter_materia":[
+		"$materia"
+	],
+
+	
+
+
+
+	"perguntar_confirma_dados":[
+		"Ok, Os dados estão corretos?\n\n- nome = '$nome'\n- idade = '$idade'\n- data de nascimento = '$data_nascimento'\n- cep = '$cep'\n- cpf = '$cpf'\n- materia = '$materia'\n $.dados_corretos"
+	],
+
+	"ref_obter_confirmacao":[
+		"$dados_corretos"
+	],
+
+
+	"finalizar_interacao":[
+		"Ok, muito obrigado, seu cadastro na Fatec está realizado. Bem-vindo!"
+	]
+
+}

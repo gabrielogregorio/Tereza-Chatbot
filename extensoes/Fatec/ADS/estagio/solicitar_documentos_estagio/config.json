@@ -1,0 +1,22 @@
+{
+    "configuracoes": {
+        "precisao": 80,
+        "timeout": "00:02:00",
+        "tentativas": 3,
+        "mensagens_tentativas": [
+            "N\u00e3o entendi, poderia responder de outra forma?"
+        ]
+    },
+    "variaveis": {},
+    "principal": [
+        "/documentos_estagio",
+        "Documentos do estagio",
+        "Preciso dos documentos do estagio",
+        "preciso dos documentos do estagio obrigatório"
+
+    ],
+    "finalizar_interacao": [
+        "Ol\u00e1, acesse o site:\\n\\nFatec Ara\u00e7atuba: https://www.fatecaracatuba.edu.br/estagio.php#arquivos\\n\\nSe você não conseguir baixar os documentos, clique com o botão esquerdo do mouse e abra o documento em uma nova página!\\n"
+    ]
+}
+

@@ -1,0 +1,28 @@
+{
+	"configuracoes":{
+		"precisao":90,
+		"timeout": "00:02:00",
+		"tentativas": 3,
+		"mensagens_tentativas": [
+			"Eu não entendi, você poderia falar de outra forma?"
+		]
+	},
+
+	"variaveis": {},
+
+  "principal":[
+    "/opcoes",
+		"opcoes",
+		"opções",
+		"ajuda",
+		"preciso da tua ajuda",
+		"preciso da sua ajuda",
+		"me ajude",
+		"preciso de ajuda",
+		"me ajude"
+  ],
+
+	"finalizar_interacao":[
+		"Segue a lista de opções disponíveis\n\n$_g_chaves_acesso"
+	]
+}

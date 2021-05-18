@@ -1,0 +1,18 @@
+{
+    "configuracoes": {
+        "precisao": 80,
+        "timeout": "00:02:00",
+        "tentativas": 3,
+        "mensagens_tentativas": [
+            "Não entendi, poderia responder de outra forma?"
+        ]
+    },
+    "variaveis": {},
+    "principal": [
+        "/carga_horaria_estagio",
+        "Qual a carga horária do estágio obrigatório"
+    ],
+    "finalizar_interacao": [
+        "A carga horária total do estágio é de 240 horas. Estas horas devem ser cumpridas em até seis horas diárias totalizando no máximo 30 horas semanais."
+    ]
+}

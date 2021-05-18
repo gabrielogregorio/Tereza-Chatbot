@@ -1,0 +1,20 @@
+{
+	"configuracoes":{
+		"precisao":80,
+		"timeout": "00:02:00",
+		"tentativas": 3,
+		"mensagens_tentativas": [
+			"Eu não entendi, você poderia falar de outra forma?"
+		]
+	},
+
+	"variaveis": {},
+
+  "principal":[
+    "ai, tu broco"
+  ],
+
+	"finalizar_interacao":[
+		"![imagem](images\\raze.jpg \"Ai, quem broco foi tu!\")"
+	]
+}

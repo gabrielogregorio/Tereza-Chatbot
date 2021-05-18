@@ -1,0 +1,23 @@
+{
+	"configuracoes":{
+		"precisao":90,
+		"timeout": "00:02:00",
+		"tentativas": 3,
+		"mensagens_tentativas": [
+			"Eu não entendi, você poderia falar de outra forma?"
+		]
+	},
+
+	"variaveis": {
+	},
+
+  "principal":[
+		"Me desculpe",
+		"Me perdoe",
+		"foi mal"
+	],
+
+	"finalizar_interacao":[
+		"Melhor não fazer isso de novo!"
+	]
+}

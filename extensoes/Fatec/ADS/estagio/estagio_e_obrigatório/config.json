@@ -1,0 +1,18 @@
+{
+    "configuracoes": {
+        "precisao": 80,
+        "timeout": "00:02:00",
+        "tentativas": 3,
+        "mensagens_tentativas": [
+            "N\u00e3o entendi, poderia responder de outra forma?"
+        ]
+    },
+    "variaveis": {},
+    "principal": [
+        "/estagio_e_obrigatorio",
+        "O estagio e obrigatorio?"
+    ],
+    "finalizar_interacao": [
+        "Sim, o est\u00e1gio \u00e9 obrigat\u00f3rio, inclusive \u00e9 previsto na grade curricular dos cursos. O estudante que n\u00e3o cumpre 240 horas, n\u00e3o pode colar grau. (Se formar)"
+    ]
+}

@@ -1,0 +1,32 @@
+{
+	"configuracoes":{
+		"precisao":80,
+		"timeout": "00:00:20",
+		"tentativas": 3,
+		"mensagens_tentativas": [
+			""
+		]
+	},
+	"variaveis":{},
+	 "principal":[
+		 "Show, obrigado tess",
+		 "valeu tess",
+		 "obrigado mesmo",
+		 "foi um prazer",
+  	 "muito grato",
+		 "Show valeu",
+     "Agradecido",
+     "Obrigado",
+		 "show",
+		 "Valeu",
+     "Grato",
+		 "vlw",
+		 "obg"
+  ],
+
+	"finalizar_interacao":[
+		"Foi um prazer ajudar",
+		"Qualquer coisa, estou aqui para ajudar",
+		"Que bom que ajudei, até breve"
+	]
+}

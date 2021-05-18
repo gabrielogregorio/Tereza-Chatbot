@@ -1,0 +1,27 @@
+{
+	"configuracoes":{
+		"precisao":100,
+		"timeout": "00:02:00",
+		"tentativas": 3,
+		"mensagens_tentativas": [
+			"Eu não entendi, você poderia falar de outra forma?"
+		]
+	},
+	"variaveis":{
+ 		"nome":".*"
+	 },
+  "principal":[
+    "/primeiraInteracao"
+  ],
+
+	"perguntar_nome":[
+		"Olá tudo bem?\n\nMeu nome é Tereza, sou o assistente virtual da Fatec e estou aqui para te ajudar a tirar as principais dúvidas sobre a Fatec Araçatuba.\n\nPreciso saber o seu nome, por favor, digite apenas o seu nome: "
+	],
+	"ref_obter_nome":[
+		"$nome"
+	],
+
+	"finalizar_interacao":[
+		"Certo $nome, segue a lista de opções disponíveis (clique nas palavras ou escreva de forma natural)\n\n$_g_chaves_acesso"
+	]
+}

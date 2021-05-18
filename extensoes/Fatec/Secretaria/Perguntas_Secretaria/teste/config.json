@@ -1,0 +1,25 @@
+{
+    "configuracoes": {
+        "precisao": 80,
+        "timeout": "00:02:00",
+        "tentativas": 3,
+        "mensagens_tentativas": [
+            "N\u00e3o entendi, poderia responder de outra forma?"
+        ]
+    },
+    "variaveis": {
+        "nome_da_variável": ["/curso_ads", "/curso_biocombustiveis"]
+    },
+    "principal": [
+        "teste"
+    ],
+    "teste": [
+        "Por favor, escolha um curso que você deseja fazer:\n$.nome_da_variável"
+    ],
+    "coletar":[
+        "$nome_da_variável"
+    ],
+    "finalizar_interacao": [
+        "Você escolheu o curso de $nome_da_variável"
+    ]
+}

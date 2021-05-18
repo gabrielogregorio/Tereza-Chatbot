@@ -1,0 +1,18 @@
+{
+    "configuracoes": {
+        "precisao": 80,
+        "timeout": "00:02:00",
+        "tentativas": 3,
+        "mensagens_tentativas": [
+            "N\u00e3o entendi, poderia responder de outra forma?"
+        ]
+    },
+    "variaveis": {},
+    "principal": [
+        "/iniciativa_para_fazer_estagio",
+        "De que parte a iniciativa para iniciar o est\u00e1gio"
+    ],
+    "finalizar_interacao": [
+        "Para iniciar o est\u00e1gio voc\u00ea deve tomar a iniciativa. Voc\u00ea deve observar o mercado para perceber as empresas que se enquadram no seu desejo profissional. Ap\u00f3s isso, deve buscar o contato da pessoa respons\u00e1vel pelo Recursos Humanos para o iniciar o di\u00e1logo sobre o est\u00e1gio. Você também deve conversar com um professor responsável, pois precisa se cadastrar na disciplina de estágio no Siga no início do Semestre."
+    ]
+}

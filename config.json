@@ -1,0 +1,33 @@
+{
+    "precisao": 70,
+    "autorizados": [
+        {
+            "chat_id": "",
+            "e-mail": ""
+        }
+    ],
+    "chaves_acesso": {
+        "Basicas": [
+            "/opcoes"
+        ],
+        "Estagio": [
+            "/carga_horaria_estagio",
+            "/estagio_precisa_ter_orientador",
+            "/estagio_e_obrigatorio",
+            "/iniciativa_para_fazer_estagio",
+            "/empresas_para_estagiar",
+            "/ja_escolhi_a_empresa_qual_e_o_proximo_passo",
+            "/documentos_estagio"
+        ],
+        "Sematec": [
+            "/cadastrar_sematec"
+        ],
+        "Trabalho de graduacao": [
+            "/documentos_tg"
+        ],
+        "Perguntas secretaria": [
+            "/email_professores",
+            "/horario_aulas"
+        ]
+    }
+}
