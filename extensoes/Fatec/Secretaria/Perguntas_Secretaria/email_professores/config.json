@@ -12,11 +12,11 @@
     },
     "principal": [
         "/email_professores",
-        "Qual \u00e9 o e-mail do professor $nome_professor",
-        "Qual \u00e9 o e-mail da professora $nome_professor",
+        "Qual é o e-mail do professor $nome_professor",
+        "Qual é o e-mail da professora $nome_professor",
 
-        "Qual \u00e9 o e-mail do $nome_professor",
-        "Qual \u00e9 o e-mail da $nome_professor",
+        "Qual é o e-mail do $nome_professor",
+        "Qual é o e-mail da $nome_professor",
 
         "Preciso do e-mail dos professores",
         "Preciso do e-mail das professoras",

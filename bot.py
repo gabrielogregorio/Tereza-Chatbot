@@ -57,6 +57,9 @@ class Api():
         except Exception as e:
             print(e)
             return ""
+        
+        PERGUNTA = PERGUNTA.replace('?', '')
+        PERGUNTA = PERGUNTA.replace('!', '')
 
         RESPOSTA = self.bot.interacao_chat(CHAT_ID, PERGUNTA)
         EXTENSAO = "PERGUNTAR_EMAIL"

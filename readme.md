@@ -21,3 +21,17 @@ Correção do bug substituindo o arquivo requests do telegram
 ```shell
 cp .\arquivos\request.py .\ambiente\Lib\site-packages\telegram\utils\
 ```
+
+
+Crie um arquivo .env e informe o token do chatbot
+```env
+TELEGRAM_TOKEN=
+NAME_DATABASE=REGISTROS.db
+NAME_TABLE=REGISTROS_TEREZA
+```
+
+Execute o bot
+
+```sheel
+python bot.py
+```
