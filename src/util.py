@@ -15,37 +15,39 @@ class Util():
             file.write(str(json.dumps(dicionario_dados, indent=4)))
 
     def carregar_configuracao(self, pasta: str) -> dict:
+        """ Carrega um arquivo de configuração """
         arquivo = '{}\\._config.json'.format(pasta)
 
         with open(arquivo, 'r', encoding='utf-8') as file:
-            programa = str(file.read())
+            js = json.loads(file.read())
 
-        js = json.loads(programa)
         js['referencia'] = pasta
-
         return js
 
     def util_gerar_arquivo_configuracao(self, pasta):
+        """ Gera um arquivo de configuração especial para a Tereza """
         diretorio = '{}\\'.format(pasta)
         dicionario_dados = self.carregar_json(diretorio + 'config.json')
         dicionario_dados = self.__processar_dicionario(dicionario_dados)
         dicionario_dados = self.escrever_json(diretorio + '._config.json', dicionario_dados)
 
     def __filtros(self, frase:str) -> str:
-        frase = str(frase) #.lower()
+        frase = str(frase)
         return re.sub('\\s{1,}', ' ', frase)
 
     def __processar_dicionario(self, dicionario_dados: dict) -> dict:
+        """ Cria uma chave especial com os textos formatados para expressões
+        regulares
+        """
         variaveis = dicionario_dados['variaveis']
 
-        for k,v in variaveis.items():
-            if str(type(v)) == "<class 'list'>":
+        # Percorrer as chaves e os itens
+        for k, v in variaveis.items():
+            if isinstance(v, list):
                 lista_nova = []
                 for item in v:
-                    if str(type(item)) == "<class 'str'>":
-                        lista_nova.append(item) #.lower())
-                    else:
-                        lista_nova.append(item)
+                    if isinstance(v, str): lista_nova.append(item)
+                    else: lista_nova.append(item)
 
                 variaveis[k] = lista_nova
 
@@ -65,7 +67,6 @@ class Util():
                 dicionario_dados['frases_variaveis'].append([])
                 continue
 
-            regex_final, lista_labels = self.__variavel_para_regex(variaveis)
             possivel = re.sub('(\\$[\\w*\\d*]*)', '', texto_possivel)
             dicionario_dados['frases_tratadas'].append(possivel)
 
@@ -74,26 +75,5 @@ class Util():
                 dicionario_dados['frases_variaveis'].append(possivel)
             else:
                 dicionario_dados['frases_variaveis'].append([])
+ 
         return dicionario_dados
-
-    def __lista_para_regex(self, lista: list) -> str:
-        var = ''
-        for item in lista:
-            var = var + str(item) + '|'
-        return var[:-1]
-
-    def __variavel_para_regex(self, variaveis):
-        regex = ".*"
-        lista = []
-        for k_var, v_var in variaveis.items():
-            if str(type(v_var)) == "<class 'list'>":
-                regex = regex + "(" + self.__lista_para_regex(v_var) + ").*"
-                lista.append(k_var)
-
-            elif str(type(v_var)) == "<class 'str'>":
-                regex = regex + "(" + v_var + ").*"
-                lista.append(k_var)
-
-            else:
-                print("__ERRO__")
-        return [regex, lista]

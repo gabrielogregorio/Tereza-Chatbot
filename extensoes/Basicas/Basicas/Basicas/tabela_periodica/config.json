@@ -11,10 +11,10 @@
 	"variaveis": {},
 
   "principal":[
-    "ai, tu broco"
+    "Preciso da tabela periódica"
   ],
 
 	"finalizar_interacao":[
-		"![imagem](images\\raze.jpg \"Ai, quem broco foi tu!\")"
+		"![imagem](images\\tabela.jpg \"Segue a tabela\")"
 	]
 }

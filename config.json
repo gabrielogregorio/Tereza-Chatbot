@@ -2,7 +2,11 @@
     "precisao": 70,
     "autorizados": [
         {
-            "chat_id": "",
+            "chat_id": "222",
+            "e-mail": ""
+        },
+        {
+            "chat_id": "333",
             "e-mail": ""
         },
         {

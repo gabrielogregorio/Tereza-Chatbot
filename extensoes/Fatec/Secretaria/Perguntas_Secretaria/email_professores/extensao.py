@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import re
 import unidecode
 
+
 class main(Extensao):
     def __init__(self, dict_extensao):
         Extensao.__init__(self, dict_extensao)
@@ -38,7 +39,11 @@ class main(Extensao):
             else:
                 resposta = choice(dados['config']["finalizar_interacao"]) # Pergunta
 
-            return self.responder(resposta=resposta, chat_id=chat_id, prox_ponto_referencia="", liberar=True) # Esperar Resposta
+            return self.responder(
+                resposta=resposta,
+                chat_id=chat_id,
+                prox_ponto_referencia="",
+                liberar=True)
 
     def carrega_emails(self):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
@@ -48,7 +53,7 @@ class main(Extensao):
         ]
         dict_emails = {}
         for url in urls:
-            req = requests.get(url=url, headers=headers)
+            req = requests.get(url=url, headers=headers, timeout=15)
             html = req.text
 
             soup = BeautifulSoup(html, 'html.parser')

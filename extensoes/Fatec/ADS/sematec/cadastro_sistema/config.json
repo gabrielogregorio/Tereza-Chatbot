@@ -4,8 +4,7 @@
 		"timeout": "00:05:00",
 		"tentativas": 3,
 		"mensagens_tentativas": [
-			"Olá amigo, eu não entendi o que você quis dizer. Poderia me ajudar?",
-			"Eita, não entendi!"
+			"Foi mal, eu não posso te ajudar! Por favor, entre em contato com algum professor!"
 		]
 	},
 	"variaveis":{

@@ -6,6 +6,8 @@ class DataBase():
         self.NAME_DATABASE = NAME_DATABASE
         self.NAME_TABLE = NAME_TABLE
 
+        #self.__criar_tabela()
+
     def __criar_tabela(self):
         """ Só é para ser usado uma vez"""
         conn = sqlite3.connect(self.NAME_DATABASE)

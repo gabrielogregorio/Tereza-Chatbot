@@ -62,11 +62,11 @@ class Api():
         PERGUNTA = PERGUNTA.replace('!', '')
 
         RESPOSTA = self.bot.interacao_chat(CHAT_ID, PERGUNTA)
-        EXTENSAO = "PERGUNTAR_EMAIL"
-        ID_INTERACAO = 352246425
-        lista_respostas = RESPOSTA.split('\n')
+        EXTENSAO = RESPOSTA['EXTENSAO']
+        ID_INTERACAO = RESPOSTA['ID_INTERACAO']
+        lista_respostas = RESPOSTA['RESPOSTA'].split('\n')
 
-        STATUS = "RESPOSTA_POR_EXTENSAO"
+        STATUS = RESPOSTA['STATUS']
 
         resposta = ''
         for linha in lista_respostas:
@@ -101,7 +101,7 @@ class Api():
                     CHAT_ID,
                     STATUS,
                     PERGUNTA,
-                    RESPOSTA,
+                    RESPOSTA['RESPOSTA'],
                     EXTENSAO,
                     DATA_HORA_PERGUNTA,
                     DATA_HORA_RESPOSTA)

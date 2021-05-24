@@ -6,7 +6,7 @@ from random import choice
 from src.Seguranca import Seguranca
 from src.util import Util
 from src.encontrar_resposta_alternativa import EncontrarRespostaAlternativa
-
+import uuid
 
 class ChatBot(): 
     def __init__(self):
@@ -20,6 +20,7 @@ class ChatBot():
         self.sec = Seguranca()
         self.encontrar_alternativa = EncontrarRespostaAlternativa()
         self.config = self.util.carregar_json('config.json')
+        print('extensões carregadas')
 
     def salvar_variaveis_globais(self, chave_acesso:str):
         self.config = self.util.carregar_json('config.json')
@@ -38,6 +39,7 @@ class ChatBot():
             self.data[chat_id]['finished'] = True
             self.data[chat_id]['instance'] = None
             self.data[chat_id]['variaveis'] = {}
+            self.data[chat_id]['id_interacao'] = str(uuid.uuid4())
 
     def registrar_tentativa(self, chat_id:str, maior:dict):
         # Não existe nenuma tentativa registrada
@@ -115,8 +117,14 @@ class ChatBot():
 
             if not maior.get('config'): 
                 #print('Nenhuma respsota alternativa\n')
+                id_interacao = self.data[chat_id]['id_interacao']
                 self.__limpar_variaveis(chat_id)
-                return self.__resposta_alternativa(entrada, chat_id)                
+                return {
+                    "RESPOSTA": self.__resposta_alternativa(entrada, chat_id),                  
+                    "EXTENSAO": "",
+                    "ID_INTERACAO": id_interacao,
+                    "STATUS": "RESPOSTA_ALTERNATIVA"
+                }
 
         else:
             nenhum_instancia_definida = False
@@ -128,10 +136,18 @@ class ChatBot():
             if datetime.now() > self.data[chat_id]['timeout']:
                 #print('Usuário Ficou muito tempo sem interagir\n')
                 # Resetar o usuário e retornar resposta
+                id_interacao = self.data[chat_id]['id_interacao']
                 self.__limpar_variaveis(chat_id)
                 # Remover permissao Temporaria se ela existir
                 self.sec.remover_registro_temporario(chat_id)
-                return "Você ficou muito tempo sem interagir, por isso eu esqueci o que a gente estava falando. O que você precisa?"
+
+                return {
+                    "RESPOSTA": "Você ficou muito tempo sem interagir, por isso eu esqueci o que a gente estava falando. O que você precisa?",
+                    "EXTENSAO": "",
+                    "ID_INTERACAO": id_interacao,
+                    "STATUS": "DESCONECTADO_POR_TEMPO"
+                }
+                
 
 
             # Obter Próxima resposta
@@ -153,11 +169,27 @@ class ChatBot():
                 # Remover permissao Temporaria se ela existir
                 self.sec.remover_registro_temporario(chat_id)
  
+
+
+                id_interacao = self.data[chat_id]['id_interacao']
                 self.__limpar_variaveis(chat_id)
-                return mensagens_tentativas
+
+                return {
+                    "RESPOSTA": mensagens_tentativas,
+                    "EXTENSAO": "",
+                    "ID_INTERACAO": id_interacao,
+                    "STATUS": "DESCONECTADO_POR_TENTATIVAS"
+                }
+
 
             #print('Reposta em caso da resposta não fazer sentido\n')
-            return 'Olá, você precisa de escrever de outra forma'
+            id_interacao = self.data[chat_id]['id_interacao']
+            return {
+                "RESPOSTA": 'Olá, você precisa de escrever de outra forma',
+                "EXTENSAO": "",
+                "ID_INTERACAO": id_interacao,
+                "STATUS": "ESPERANDO_RESPOSTA_CERTA"
+            }
 
         #print('Existiu uma resposta válida')
         # Marcar quando ocorrerá o timeout da interação com o usuário
@@ -181,17 +213,37 @@ class ChatBot():
                 # Remover permissao Temporaria se ela existir
                 self.sec.remover_registro_temporario(chat_id)
  
+                id_interacao = self.data[chat_id]['id_interacao']
                 self.__limpar_variaveis(chat_id)
-                return mensagens_tentativas
+                return {
+                    "RESPOSTA": mensagens_tentativas,
+                    "EXTENSAO": maior['config']['referencia'],
+                    "ID_INTERACAO": id_interacao,
+                    "STATUS": "ESPERANDO_RESPOSTA_CERTA"
+                } 
 
             # Resposta Geral ao usuário
             #print('Reposta em caso da resposta não fazer sentido 2')
             if nenhum_instancia_definida:
                 #print('Nenhuma respsota alternativa 3\n')
+                id_interacao = self.data[chat_id]['id_interacao']
                 self.__limpar_variaveis(chat_id)
-                return self.__resposta_alternativa(entrada, chat_id)
+                
+                return {
+                    "RESPOSTA": self.__resposta_alternativa(entrada, chat_id),
+                    "EXTENSAO": "",
+                    "ID_INTERACAO": id_interacao,
+                    "STATUS": "RESPOSTA_ALTERNATIVA"
+                }
 
-            return 'Eu não entendi, você poderia escrever de outra forma?'
+            id_interacao = self.data[chat_id]['id_interacao']
+            return {
+                "RESPOSTA": 'Eu não entendi, você poderia escrever de outra forma?',
+                "EXTENSAO": maior['config']['referencia'],
+                "ID_INTERACAO": id_interacao,
+                "STATUS": "ESPERANDO_RESPOSTA_CERTA"
+            }
+
         else:
             #print('Resposta faz sentido e está acima da %')
             # Acessa a instância e informa a entrada com os dados tratados
@@ -228,5 +280,12 @@ class ChatBot():
                 #print("Salvando usuário permanentemente")
                 self.sec.salvar_registro_permanente(chat_id, 'nome')
 
+
             #print('Resposta ao usuário\n')
-            return resposta['resposta']
+            id_interacao = self.data[chat_id]['id_interacao']
+            return {
+                "RESPOSTA": resposta['resposta'],
+                "EXTENSAO": maior['config']['referencia'],
+                "ID_INTERACAO": id_interacao,
+                "STATUS": "RESPONDIDO"
+            }

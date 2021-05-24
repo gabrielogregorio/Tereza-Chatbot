@@ -12,22 +12,44 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleW
 
 class EncontrarRespostaAlternativa():
     def __init__(self):
-        req = requests.get('https://www.fatecaracatuba.edu.br/', headers=headers)
-        soup = BeautifulSoup(req.text, 'html.parser')
+        requisicao = requests.get(
+            'https://www.fatecaracatuba.edu.br/',
+            headers=headers,
+            timeout=15)
+
+        # Parsear para HTML
+        soup = BeautifulSoup(requisicao.text, 'html.parser')
+
+        # Obter o menu
         table = soup.find(id='fatec-menu')
+
+        # Obter os itens
         all_itens = table.find_all('li')
 
-        # Obter o menu completo
+        # Percorrer os menus
         for item in all_itens:
+
+            # obter os links
             list_a = item.find_all('a')
+
+            # Percorrer os links
             for a in list_a:
+
+                # Extrair o titulo e o link
                 texto, link = a.text, a['href']
+
+                # Se não for um link vazio
                 if link not in ['#', '']:
+
+                    # se começa com HTTP é um site fora da Fatec
                     if link.startswith('http'):
+                        # Somente salvar link
                         link2 = link
                     else:
+                        # Buscar página
                         link2 = 'https://www.fatecaracatuba.edu.br/' + link
 
+                    # Salvar a o titulo relacionado a URL
                     dict_menus[texto.strip()] = link2
 
         # Obter os textos

@@ -10,9 +10,9 @@
     "variaveis": {},
     "principal": [
         "/estagio_precisa_ter_orientador",
-        "Todo est\u00e1gio deve ter um professor orientador"
+        "Todo estágio deve ter um professor orientador"
     ],
     "finalizar_interacao": [
-        "Sim, todo o est\u00e1gio precisa ter um professor orientador, ele precisa ser da mesma \u00e1rea em que voc\u00ea vai estagiar. Voc\u00ea deve indicar o nome do professor na hora da formaliza\u00e7\u00e3o do contrato."
+        "Sim, todo o estágio precisa ter um professor orientador, ele precisa ser da mesma área em que você vai estagiar. Você deve indicar o nome do professor na hora da formalização do contrato."
     ]
 }

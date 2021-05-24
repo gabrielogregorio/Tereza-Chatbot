@@ -18,52 +18,63 @@ class SepararFrases():
     def lista_para_regex(self, lista:list) -> str:
         var = ''
         for item in lista:
-            item = item
-            var = var + str(item) + '|'
+            var += str(item) + '|'
         return var[:-1]
     
     def filtros(self, frase:str) -> str:
-        frase = str(frase) # .lower()
-        return re.sub('\\s{1,}', ' ', frase)
+        """Remove multiplas strings"""
+        return re.sub('\\s{1,}', ' ', str(frase))
 
     def converter_variaveis_texto(self, variaveis:dict) -> list:
-        """in: {"nome":".*", "escola":["Fatec", "Etec", "Outra"]})
-           out: ['.*(.*).*(Fatec|Etec|Outra).*', ['nome', 'escola']]
-        """
+        """ Converte as variáveis textuais ou lista em expressões regulares"""
         regex_final = ".*?"
         lista = []
-        for k_var, v_var in variaveis.items():
+        for k, v in variaveis.items():
+
+            # Variável é uma lista
+            if isinstance(v, list):
+                regex_final += "({}).*".format(self.lista_para_regex(lista=v))
+                lista.append(k)
     
-            if str(type(v_var)) == "<class 'list'>":
-                regex_final = regex_final + "(" + SepararFrases.lista_para_regex(self, v_var) + ").*"
-                lista.append(k_var)
-    
-            elif str(type(v_var)) == "<class 'str'>":
-                regex_final = regex_final + "(" + v_var + ").*"
-                lista.append(k_var)
+            # Variável é uma string
+            elif isinstance(v, str):
+                regex_final += "({}).*".format(v)
+                lista.append(k)
     
             else:
-                print("__ERRO__")
+                print("Erro, tipo indefinido!")
+
         return [regex_final, lista]
 
-    def retornar_textos_das_variaveis(self, texto:str, regex_final:str) -> list:
-        #saida: [True, 'Tenho ', ['18']]
-        res = re.search(regex_final, texto)
-        string = ''
+    def retornar_textos_das_variaveis(self, texto:str, regex:str) -> list:
+        """ Extrai informações de um texto baseado na expressão regular"""
+        re_resposta = re.search(regex, texto)
+
+        texto_sem_dados = ''
         ponto = 0
-        lista = []
+        lista_dados = []
     
-        if res is not None:
-            qtd = len(list(res.groups()))
-            for n in range(qtd):
-                xi, xf = res.span(n + 1)
-                string = string + texto[ponto:xi]
-                lista.append(texto[xi:xf])
-    
+        # Se extraiu dados
+        if re_resposta is not None:
+
+            # Contar a quantidade de dados extraidos
+            quantidade = len(list(re_resposta.groups()))
+            for n in range(quantidade):
+                # Inicio e fim da posição do dado
+                xi, xf = re_resposta.span(n + 1)
+
+                # Exclusão do dado no texto
+                texto_sem_dados += texto[ponto:xi]
+
+                # Salvamento do dado
+                lista_dados.append(texto[xi:xf])
+
+                # Normalizção
                 ponto = xf
 
-            string = string + texto[ponto:]
+            # Salvamento final do texto extraido
+            texto_sem_dados += texto[ponto:]
     
-            return [True, string, lista]
-        return [False, '', lista]
+            return [True, texto_sem_dados, lista_dados]
+        return [False, '', lista_dados]
     
