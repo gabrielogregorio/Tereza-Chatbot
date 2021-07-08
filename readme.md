@@ -1,5 +1,7 @@
 # Tereza Chatbot Experimental   
 > Documentação em desenvolvimento   
+
+![images](images/interacao.png)   
 O chatbot tereza é um sistema desenvolvido usando a linguagem Python, o conceito dele é permitir que as interações sejam montadas de acordo com um conceito chamado de extensões. As extensões neste projeto são arquivos próprios e independentes que podem usar de todos os recursos da linguagem Python.
 
 Cada extensão precisa seguir uma padronização para que o sistema a reconheça como legitima. Após esse reconhecimento, uma classe será instanciada e inicializada de cada extensão.
@@ -117,6 +119,9 @@ Variáveis podem ser uma expressão regular, exemplo para capturar o cep quando 
 | $variavel | Esperar uma resposta do usuário | Faz o sistema interpretar que a extensão precisa coletar algo no padrão da variável |
 | $.variavel | Retornar uma resposta ao usuário | Exibe os valores que a variável pode assumir, se for uma lista retorna uma lista no padrão Telegram |
 
+Exemplo do uso do recurso na prática:  
+
+![images](images/interacao2.png)   
 
 ### Arquivo da extensão 
 O arquivo da extensão se trata do “extensao.py”, ele precisa ter a seguinte estrutura:
